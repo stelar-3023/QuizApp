@@ -5,17 +5,17 @@ body {
   height: 100vh; /* 1% of the initial container */
   justify-content: center;
   width: 100vw; /* 1% of the initial container */
-  
 }
 
 #question-card {
-  background-color:white;
+  background-color: white;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 2px 2px 5px black;
   max-width: 80%;
   padding: 10px;
   width: 900px;
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -24,11 +24,10 @@ body {
   border-radius: 5px;
   font-size: 25px;
   padding: 10px;
-  
 }
 
 .btn:hover {
-  background-color:rgb(255, 166, 0);
+  background-color: rgb(255, 166, 0);
 }
 
 .btn-answers {
@@ -38,7 +37,8 @@ body {
   margin: 20px 0;
 }
 
-.start-btn, .next-btn {
+.start-btn,
+.next-btn {
   font-weight: bold;
   padding: 15px 30px;
 }
