@@ -95,33 +95,65 @@ const startButton = document.getElementById("start-btn");
 startButton.addEventListener("click", startGame);
 
 const getQuestion = document.getElementById("question");
-const getAnswer = document.getElementById("answers");
+const getAnswersButtons = document.getElementsByClassName("btn");
+
+const resetButton = document.getElementById("reset-btn");
 
 const nextButton = document.getElementById("next-btn");
 nextButton.addEventListener("click", () => {
-  currentQuestion++;
+  currentQuestionIndex++;
   nextQuestion();
 });
 
-let currentQuestion;
+let currentQuestionIndex;
 
 function startGame() {
   startButton.classList.add("hide");
   nextButton.classList.remove("hide");
-  currentQuestion = 0;
+  currentQuestionIndex = 0;
   nextQuestion();
 }
 
 function nextQuestion() {
-  if (currentQuestion >= questions.length) {
+  if (currentQuestionIndex === questions.length - 1) {
     //score
   } else {
-    showQuestion(currentQuestion);
-    currentQuestion + 1;
+    showQuestion(currentQuestionIndex);
+    currentQuestionIndex + 1;
   }
 }
 
 function showQuestion(current) {
-  getQuestion.innerText = questions[current].question;
-  questions.forEach((question) => console.log(question.answers));
+  const currentQuestion = questions[current];
+  getQuestion.innerText = currentQuestion.question;
+  //questions.forEach((question) => console.log(question.answers));
+
+  currentQuestion.answers.forEach((answer, index) => {
+    getAnswersButtons[index].innerText = answer.text;
+    getAnswersButtons[index].addEventListener("click", checkAnswer);
+  });
+}
+
+let score = 0;
+
+function checkAnswer(event) {
+  const currentQuestion = questions[currentQuestionIndex];
+  currentQuestion.answers.forEach((answer) => {
+    if (answer.correct) {
+      if (answer.text === event.target.innerText) {
+        score++;
+      }
+    }
+  });
+  console.log(score);
+  //console.log(event.target.innerText)
+}
+function endGame() {
+  resetButton.classList.remove("hide");
+  nextButton.classList.add("hide");
+  startButton.classList.remove("hide");
+  resetButton.addEventListener("click", () => {
+    currentQuestionIndex = 0;
+    score = 0;
+  });
 }
