@@ -115,10 +115,13 @@ function startGame() {
 }
 
 function nextQuestion() {
+  console.log(currentQuestionIndex);
   if (currentQuestionIndex === questions.length - 1) {
     //score
   } else {
     showQuestion(currentQuestionIndex);
+    // console.log(currentQuestionIndex);
+    console.log(questions.length - 1);
     currentQuestionIndex + 1;
   }
 }
@@ -145,13 +148,16 @@ function checkAnswer(event) {
       }
     }
   });
-  console.log(score);
   //console.log(event.target.innerText)
 }
+
 function endGame() {
-  resetButton.classList.remove("hide");
-  nextButton.classList.add("hide");
-  startButton.classList.remove("hide");
+  if (currentQuestion === currentQuestionIndex) {
+    resetButton.classList.remove("hide");
+    nextButton.classList.add("hide");
+    startButton.classList.remove("hide");
+  }
+
   resetButton.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
