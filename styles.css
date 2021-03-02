@@ -18,6 +18,11 @@ body {
   margin-bottom: 20px;
 }
 
+#quiz-title {
+  font-family: "Lobster", cursive;
+  font-size: 64px;
+}
+
 .btn {
   background-color: rgb(247, 199, 137);
   border: 1px solid silver;
