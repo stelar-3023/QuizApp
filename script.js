@@ -95,13 +95,22 @@ const startButton = document.getElementById("start-btn");
 startButton.addEventListener("click", startGame);
 
 const getQuestion = document.getElementById("question");
+
 const getAnswersButtons = document.getElementsByClassName("btn");
+
+const answers = document.getElementById("answers");
+
+const quizTitle = document.getElementById("quiz-title");
 
 const resetButton = document.getElementById("reset-btn");
 
 // const nextButton = document.getElementById("next-btn");
 
 const finalScore = document.getElementById("final-score");
+
+const yourScore = document.getElementById("your-score");
+
+const endScore = document.getElementById("end-score");
 // nextButton.addEventListener("click", () => {
 //   currentQuestionIndex++;
 //   nextQuestion();
@@ -110,9 +119,13 @@ const finalScore = document.getElementById("final-score");
 let currentQuestionIndex;
 
 function startGame() {
+  getQuestion.classList.remove("hide");
+  answers.classList.remove("hide");
   startButton.classList.add("hide");
+  quizTitle.classList.add("hide");
   // nextButton.classList.remove("hide");
   resetButton.classList.add("hide");
+  yourScore.classList.add("hide");
   currentQuestionIndex = 0;
   finalScore.innerHTML = 0;
   nextQuestion();
@@ -121,6 +134,7 @@ function startGame() {
 function nextQuestion() {
   // console.log({ currentQuestionIndex });
   if (currentQuestionIndex === questions.length) {
+    endScore.innerHTML = (score / questions.length) * 100 + "%";
     endGame();
   } else {
     showQuestion(currentQuestionIndex);
@@ -161,12 +175,24 @@ function checkAnswer(event) {
 
 function endGame() {
   resetButton.classList.remove("hide");
+  yourScore.classList.remove("hide");
+  getQuestion.classList.add("hide");
+  answers.classList.add("hide");
+
   // nextButton.classList.add("hide");
   // startButton.classList.remove("hide");
 
   resetButton.addEventListener("click", () => {
-    currentQuestionIndex = 0;
-    score = 0;
-    startGame();
+    resetGame();
   });
+}
+
+function resetGame() {
+  finalScore.innerHTML = 0;
+  currentQuestionIndex = 0;
+  score = 0;
+  startButton.classList.remove("hide");
+  quizTitle.classList.remove("hide");
+  resetButton.classList.add("hide");
+  yourScore.classList.add("hide");
 }
