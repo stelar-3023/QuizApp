@@ -99,29 +99,33 @@ const getAnswersButtons = document.getElementsByClassName("btn");
 
 const resetButton = document.getElementById("reset-btn");
 
-const nextButton = document.getElementById("next-btn");
-nextButton.addEventListener("click", () => {
-  currentQuestionIndex++;
-  nextQuestion();
-});
+// const nextButton = document.getElementById("next-btn");
+
+const finalScore = document.getElementById("final-score");
+// nextButton.addEventListener("click", () => {
+//   currentQuestionIndex++;
+//   nextQuestion();
+// });
 
 let currentQuestionIndex;
 
 function startGame() {
   startButton.classList.add("hide");
-  nextButton.classList.remove("hide");
+  // nextButton.classList.remove("hide");
+  resetButton.classList.add("hide");
   currentQuestionIndex = 0;
+  finalScore.innerHTML = 0;
   nextQuestion();
 }
 
 function nextQuestion() {
-  console.log(currentQuestionIndex);
-  if (currentQuestionIndex === questions.length - 1) {
-    //score
+  // console.log({ currentQuestionIndex });
+  if (currentQuestionIndex === questions.length) {
+    endGame();
   } else {
     showQuestion(currentQuestionIndex);
-    // console.log(currentQuestionIndex);
-    console.log(questions.length - 1);
+    // console.log({ currentQuestionIndex });
+    // console.log({ secondconsolelog: questions.length - 1 });
     currentQuestionIndex + 1;
   }
 }
@@ -148,18 +152,21 @@ function checkAnswer(event) {
       }
     }
   });
+  console.log({ score });
+  finalScore.innerHTML = score;
+  currentQuestionIndex++;
+  nextQuestion();
   //console.log(event.target.innerText)
 }
 
 function endGame() {
-  if (currentQuestion === currentQuestionIndex) {
-    resetButton.classList.remove("hide");
-    nextButton.classList.add("hide");
-    startButton.classList.remove("hide");
-  }
+  resetButton.classList.remove("hide");
+  // nextButton.classList.add("hide");
+  // startButton.classList.remove("hide");
 
   resetButton.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
+    startGame();
   });
 }
