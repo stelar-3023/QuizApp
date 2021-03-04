@@ -108,6 +108,8 @@ const resetButton = document.getElementById("reset-btn");
 
 const finalScore = document.getElementById("final-score");
 
+const scoreAdd = document.getElementById("score-add");
+
 const yourScore = document.getElementById("your-score");
 
 const endScore = document.getElementById("end-score");
@@ -126,6 +128,7 @@ function startGame() {
   // nextButton.classList.remove("hide");
   resetButton.classList.add("hide");
   yourScore.classList.add("hide");
+  scoreAdd.classList.remove("hide");
   currentQuestionIndex = 0;
   finalScore.innerHTML = 0;
   nextQuestion();
@@ -166,7 +169,7 @@ function checkAnswer(event) {
       }
     }
   });
-  console.log({ score });
+  // console.log({ score });
   finalScore.innerHTML = score;
   currentQuestionIndex++;
   nextQuestion();
@@ -178,6 +181,7 @@ function endGame() {
   yourScore.classList.remove("hide");
   getQuestion.classList.add("hide");
   answers.classList.add("hide");
+  scoreAdd.classList.add("hide");
 
   // nextButton.classList.add("hide");
   // startButton.classList.remove("hide");
@@ -188,11 +192,12 @@ function endGame() {
 }
 
 function resetGame() {
-  finalScore.innerHTML = 0;
+  // finalScore.innerHTML = 0;
   currentQuestionIndex = 0;
   score = 0;
   startButton.classList.remove("hide");
   quizTitle.classList.remove("hide");
   resetButton.classList.add("hide");
   yourScore.classList.add("hide");
+  scoreAdd.classList.add("hide");
 }
