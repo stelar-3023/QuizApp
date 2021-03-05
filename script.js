@@ -118,7 +118,7 @@ const endScore = document.getElementById("end-score");
 //   nextQuestion();
 // });
 
-let currentQuestionIndex;
+let currentQuestionIndex, shuffledQuestions;
 
 function startGame() {
   getQuestion.classList.remove("hide");
@@ -129,6 +129,7 @@ function startGame() {
   resetButton.classList.add("hide");
   yourScore.classList.add("hide");
   scoreAdd.classList.remove("hide");
+  shuffledQuestions = questions.sort(() => Math.random() - .50);
   currentQuestionIndex = 0;
   finalScore.innerHTML = 0;
   nextQuestion();
