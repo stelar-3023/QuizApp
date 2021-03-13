@@ -117,6 +117,11 @@ const endScore = document.getElementById("end-score");
 //   currentQuestionIndex++;
 //   nextQuestion();
 // });
+const questions_array = [];
+for(i = 0; i < 5; i++) {
+  questions_array[i] = questions[i]
+}
+console.log(questions_array);
 
 let currentQuestionIndex, shuffledQuestions;
 
@@ -129,7 +134,7 @@ function startGame() {
   resetButton.classList.add("hide");
   yourScore.classList.add("hide");
   scoreAdd.classList.remove("hide");
-  shuffledQuestions = questions.sort(() => Math.random() - .50);
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   finalScore.innerHTML = 0;
   nextQuestion();
