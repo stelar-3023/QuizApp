@@ -89,6 +89,96 @@ const questions = [
       { text: "51", correct: false },
     ],
   },
+  {
+    question: "What is 31 + 21?",
+    answers: [
+      { text: "41", correct: false },
+      { text: "31", correct: false },
+      { text: "21", correct: false },
+      { text: "52", correct: true },
+    ],
+  },
+  {
+    question: "What is 2 x 3?",
+    answers: [
+      { text: "32", correct: false },
+      { text: "23", correct: false },
+      { text: "6", correct: true },
+      { text: "5", correct: false },
+    ],
+  },
+  {
+    question: "What is 1 x 4?",
+    answers: [
+      { text: "4", correct: true },
+      { text: "5", correct: false },
+      { text: "14", correct: false },
+      { text: "41", correct: false },
+    ],
+  },
+  {
+    question: "What is 3 x 100?",
+    answers: [
+      { text: "100", correct: false },
+      { text: "30", correct: false },
+      { text: "300", correct: true },
+      { text: "3", correct: false },
+    ],
+  },
+  {
+    question: "What is 15 + 30?",
+    answers: [
+      { text: "41", correct: false },
+      { text: "55", correct: false },
+      { text: "40", correct: false },
+      { text: "45", correct: true },
+    ],
+  },
+  {
+    question: "What is 6 + 5?",
+    answers: [
+      { text: "10", correct: false },
+      { text: "31", correct: false },
+      { text: "11", correct: true },
+      { text: "1", correct: false },
+    ],
+  },
+  {
+    question: "What is 6 x 1?",
+    answers: [
+      { text: "6", correct: true },
+      { text: "7", correct: false },
+      { text: "5", correct: false },
+      { text: "61", correct: false },
+    ],
+  },
+  {
+    question: "What is 15 + 5?",
+    answers: [
+      { text: "21", correct: false },
+      { text: "10", correct: false },
+      { text: "20", correct: true },
+      { text: "25", correct: false },
+    ],
+  },
+  {
+    question: "What is 10 x 1?",
+    answers: [
+      { text: "11", correct: false },
+      { text: "10", correct: true },
+      { text: "100", correct: false },
+      { text: "9", correct: false },
+    ],
+  },
+  {
+    question: "What is 11 x 1?",
+    answers: [
+      { text: "111", correct: false },
+      { text: "12", correct: false },
+      { text: "11", correct: true },
+      { text: "21", correct: false },
+    ],
+  },
 ];
 
 const startButton = document.getElementById("start-btn");
@@ -117,10 +207,12 @@ const endScore = document.getElementById("end-score");
 //   currentQuestionIndex++;
 //   nextQuestion();
 // });
+
 const questions_array = [];
-for(i = 0; i < 5; i++) {
-  questions_array[i] = questions[i]
+for (i = 0; i < 10; i++) {
+  questions_array[i] = questions[i];
 }
+console.log(questions);
 console.log(questions_array);
 
 let currentQuestionIndex, shuffledQuestions;
@@ -134,7 +226,7 @@ function startGame() {
   resetButton.classList.add("hide");
   yourScore.classList.add("hide");
   scoreAdd.classList.remove("hide");
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  shuffledQuestions = questions_array.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   finalScore.innerHTML = 0;
   nextQuestion();
@@ -142,8 +234,8 @@ function startGame() {
 
 function nextQuestion() {
   // console.log({ currentQuestionIndex });
-  if (currentQuestionIndex === questions.length) {
-    endScore.innerHTML = (score / questions.length) * 100 + "%";
+  if (currentQuestionIndex === questions_array.length) {
+    endScore.innerHTML = (score / questions_array.length) * 100 + "%";
     endGame();
   } else {
     showQuestion(currentQuestionIndex);
@@ -154,7 +246,7 @@ function nextQuestion() {
 }
 
 function showQuestion(current) {
-  const currentQuestion = questions[current];
+  const currentQuestion = questions_array[current];
   getQuestion.innerText = currentQuestion.question;
   //questions.forEach((question) => console.log(question.answers));
 
@@ -167,7 +259,7 @@ function showQuestion(current) {
 let score = 0;
 
 function checkAnswer(event) {
-  const currentQuestion = questions[currentQuestionIndex];
+  const currentQuestion = questions_array[currentQuestionIndex];
   currentQuestion.answers.forEach((answer) => {
     if (answer.correct) {
       if (answer.text === event.target.innerText) {
