@@ -208,12 +208,25 @@ const endScore = document.getElementById("end-score");
 //   nextQuestion();
 // });
 
-const questions_array = [];
-for (i = 0; i < 10; i++) {
-  questions_array[i] = questions[i];
+let questions_array = [];
+
+let anArrayOfUniqueNumbers = [];
+let numberGenerator = function(arr) {
+  if (arr.length >= 10) return;
+  let newNumber = Math.floor(Math.random() * 19);
+  if (arr.indexOf(newNumber) < 0) {
+    arr.push(newNumber);
+  }
+  numberGenerator(arr);
+};
+numberGenerator(anArrayOfUniqueNumbers);
+console.log(anArrayOfUniqueNumbers)
+
+for (let index = 0; index < 10; index++) {
+  let result = questions[anArrayOfUniqueNumbers[index]]
+  questions_array.push(result);
 }
-console.log(questions);
-console.log(questions_array);
+console.log(questions_array)
 
 let currentQuestionIndex, shuffledQuestions;
 
